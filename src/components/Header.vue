@@ -19,7 +19,7 @@ const links = [
 
 <template>
   <header class="header">
-    <img src="/public/avatar.png" alt="avatar" class="avatar" />
+    <img src="/avatar.png" alt="avatar" class="avatar" />
     <div class="header-content">
       <RouterLink
         v-for="link in links"

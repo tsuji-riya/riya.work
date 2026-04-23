@@ -12,7 +12,7 @@ const { text } = defineProps({
 const displayText = ref('')
 
 onMounted(() => {
-  new Noiser(10).start(text, (v) => (displayText.value = v))
+  new Noiser(30).start(text, (v) => (displayText.value = v))
 })
 </script>
 
