@@ -1,0 +1,213 @@
+/* Swap Primer's blue accent for its sponsors rose pink; both tokens are defined per theme so light/dark stay paired. */
+[data-color-mode][data-light-theme][data-dark-theme] {
+  --fgColor-accent: var(--fgColor-sponsors);
+  --bgColor-accent-emphasis: var(--bgColor-sponsors-emphasis);
+  --bgColor-accent-muted: var(--bgColor-sponsors-muted);
+  --borderColor-accent-emphasis: var(--borderColor-sponsors-emphasis);
+  --borderColor-accent-muted: var(--borderColor-sponsors-muted);
+  --focus-outlineColor: var(--fgColor-sponsors);
+}
+
+body {
+  margin: 0;
+}
+
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bgColor-default);
+  background-image: linear-gradient(var(--bgColor-sponsors-muted), var(--bgColor-sponsors-muted));
+  isolation: isolate;
+}
+
+/* Two drifting 😺 / 🎀 layers for parallax: a faint, slow, small one far back and a bigger, faster, wobbling one in front.
+   Each loop moves exactly one tile so it repeats seamlessly. */
+.page::before,
+.page::after {
+  content: '';
+  position: fixed;
+  z-index: -1;
+  pointer-events: none;
+  animation: drift linear infinite;
+}
+
+.page::before {
+  --tile: 192px;
+  inset: -192px 0 0 -192px;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='192' height='192'><g opacity='0.08' font-size='14'><text x='10' y='24'>😺</text><text x='106' y='24'>🎀</text><text x='58' y='72'>🎀</text><text x='154' y='72'>😺</text><text x='10' y='120'>🎀</text><text x='106' y='120'>😺</text><text x='58' y='168'>😺</text><text x='154' y='168'>🎀</text></g></svg>");
+  animation-duration: 40s;
+}
+
+.page::after {
+  --tile: 320px;
+  inset: -320px 0 0 -320px;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='320' height='320'><g opacity='0.14' font-size='26'><text x='16' y='42'>😺<animateTransform attributeName='transform' type='rotate' values='-10 29 32;10 29 32;-10 29 32' dur='2.4s' begin='-0.0s' repeatCount='indefinite' calcMode='spline' keySplines='.45 0 .55 1;.45 0 .55 1'/></text><text x='176' y='42'>🎀<animateTransform attributeName='transform' type='rotate' values='-14 189 32;14 189 32;-14 189 32' dur='2.8s' begin='-0.3s' repeatCount='indefinite' calcMode='spline' keySplines='.45 0 .55 1;.45 0 .55 1'/></text><text x='96' y='122'>🎀<animateTransform attributeName='transform' type='rotate' values='-18 109 112;18 109 112;-18 109 112' dur='3.2s' begin='-0.6s' repeatCount='indefinite' calcMode='spline' keySplines='.45 0 .55 1;.45 0 .55 1'/></text><text x='256' y='122'>😺<animateTransform attributeName='transform' type='rotate' values='-10 269 112;10 269 112;-10 269 112' dur='3.6s' begin='-0.9s' repeatCount='indefinite' calcMode='spline' keySplines='.45 0 .55 1;.45 0 .55 1'/></text><text x='16' y='202'>🎀<animateTransform attributeName='transform' type='rotate' values='-14 29 192;14 29 192;-14 29 192' dur='2.4s' begin='-1.2s' repeatCount='indefinite' calcMode='spline' keySplines='.45 0 .55 1;.45 0 .55 1'/></text><text x='176' y='202'>😺<animateTransform attributeName='transform' type='rotate' values='-18 189 192;18 189 192;-18 189 192' dur='2.8s' begin='-1.5s' repeatCount='indefinite' calcMode='spline' keySplines='.45 0 .55 1;.45 0 .55 1'/></text><text x='96' y='282'>😺<animateTransform attributeName='transform' type='rotate' values='-10 109 272;10 109 272;-10 109 272' dur='3.2s' begin='-1.8s' repeatCount='indefinite' calcMode='spline' keySplines='.45 0 .55 1;.45 0 .55 1'/></text><text x='256' y='282'>🎀<animateTransform attributeName='transform' type='rotate' values='-14 269 272;14 269 272;-14 269 272' dur='3.6s' begin='-2.1s' repeatCount='indefinite' calcMode='spline' keySplines='.45 0 .55 1;.45 0 .55 1'/></text></g></svg>");
+  animation-duration: 22s;
+}
+
+@keyframes drift {
+  to {
+    transform: translate(var(--tile), var(--tile));
+  }
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--base-size-8) var(--base-size-16);
+  background-color: var(--bgColor-default);
+  border-bottom: 2px solid var(--borderColor-sponsors-emphasis);
+}
+
+.main {
+  flex: 1;
+  width: 100%;
+  max-width: 880px;
+  margin: 0 auto;
+  padding: var(--base-size-40) var(--base-size-16);
+  box-sizing: border-box;
+}
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: var(--base-size-48);
+}
+
+.hero-avatar {
+  box-shadow: 0 0 0 4px var(--bgColor-default), 0 0 0 6px var(--borderColor-sponsors-emphasis);
+}
+
+.hero-title {
+  margin-top: var(--base-size-16);
+}
+
+.hero-text {
+  color: var(--fgColor-muted);
+  max-width: 36rem;
+}
+
+.section-title {
+  margin-bottom: var(--base-size-16);
+}
+
+.sites {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: var(--base-size-16);
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--base-size-12);
+  padding: var(--base-size-16);
+  background-color: var(--bgColor-default);
+  border: 1px solid var(--borderColor-sponsors-muted);
+  border-radius: var(--borderRadius-large);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-resting-medium);
+}
+
+.card-text {
+  margin: 0;
+  flex: 1;
+  color: var(--fgColor-muted);
+}
+
+.card-repo {
+  font-size: var(--text-body-size-small);
+}
+
+.footer {
+  padding: var(--base-size-24) var(--base-size-16);
+  text-align: center;
+  color: var(--fgColor-muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    transition: none;
+  }
+
+  .page::before {
+    animation: none;
+  }
+
+  .page::after {
+    display: none;
+  }
+}
+
+.works-section {
+  margin-top: var(--base-size-48);
+}
+
+/* Dashed rose rail with a 🎀 on each era, newest at the top */
+.timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 var(--base-size-24);
+  border-left: 2px dashed var(--borderColor-sponsors-emphasis);
+  display: flex;
+  flex-direction: column;
+  gap: var(--base-size-16);
+}
+
+.timeline-item {
+  position: relative;
+}
+
+.timeline-item::before {
+  content: '🎀';
+  position: absolute;
+  left: calc(-1 * var(--base-size-24) - 11px);
+  top: var(--base-size-16);
+  font-size: 18px;
+  line-height: 1;
+}
+
+.repos {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: var(--base-size-12) var(--base-size-16);
+}
+
+.repos .card-text {
+  margin-top: var(--base-size-4);
+  font-size: var(--text-body-size-small);
+}
+
+.games {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--base-size-12);
+}
+
+.game {
+  padding: var(--base-size-8) var(--base-size-16);
+  background-color: var(--bgColor-default);
+  border: 1px solid var(--borderColor-sponsors-muted);
+  border-radius: var(--borderRadius-full);
+  font-weight: var(--base-text-weight-semibold);
+}
