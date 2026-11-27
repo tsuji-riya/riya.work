@@ -22,6 +22,12 @@ const sites = [
     description: 'Fantasy Zone (アーケード版) をブラウザで遊ぶためのサイト。ROM は手元のものを使います。',
     tags: ['EmulatorJS', 'FBNeo'],
   },
+  {
+    name: 'status.riya.work',
+    emoji: '📡',
+    description: 'おうち k3s と各サイトの稼働状況ページ。Gatus の結果を 1 分ごとに表示します。',
+    tags: ['Gatus', 'React', 'GitHub Pages'],
+  },
 ]
 
 const github = 'https://github.com/tsuji-riya'
